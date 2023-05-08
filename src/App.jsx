@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import "./App.css"
+import terserah from './Style.module.css'
+import Card from "./component/Card"
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [namaTask, setNamaTask] = useState("")
+	const [tasksObj, setTaskObj] = useState([
+		{ name: "task 1", completed: true },
+		{ name: "task 2" },
+	])
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	function tambahTask() {
+		const tmpObj = [...tasksObj, { name: namaTask }]
+		setTaskObj(tmpObj)
+		setNamaTask("")
+	}
+
+	function hapustask(index) {
+		console.log(index)
+		const tmpObj = tasksObj.filter((data, i) => {
+			if (i !== index) {
+				return true
+			} else {
+				return false
+			}
+		})
+		setTaskObj(tmpObj)
+	}
+
+	function editTask(index) {
+		const tmpObj = tasksObj.map((data, i) => {
+			if (i !== index) {
+				return data
+			} else {
+				return {name:i+data.name}
+			}
+			
+		})
+		setTaskObj(tmpObj)
+	}
+
+	return (
+		<>
+			<Card/>
+			<input
+				className={terserah.input}
+				value={namaTask}
+				onChange={(e) => setNamaTask(e.target.value)}
+			/>
+			<button onClick={tambahTask}>Tambah task</button>
+			{/* {tasks.map((data) => (
+				<p>{data}</p>
+			))} */}
+			{tasksObj.map((data, index) => (
+				// data.completed == true ? (
+				// 	<p key={index} >
+				// 		{data.name}
+				// 	</p>
+				// ) : (
+				// 	<p key={index} onClick={() => hapustask(index)}>
+				// 		{data.name} belum complete
+				// 	</p>
+				// 	)
+				<div key={index} style={{ display: "flex" }}>
+					<p
+						style={{
+							color: data.completed == true ? "green" : "white",
+						}}
+					>
+						{data.name} belum complete
+					</p>
+					<button onClick={() => editTask(index)}>edit</button>
+				</div>
+			))}
+		</>
+	)
 }
 
 export default App
