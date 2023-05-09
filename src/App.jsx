@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./App.css"
-import terserah from './Style.module.css'
+import terserah from "./Style.module.css"
 import Card from "./component/Card"
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
 		{ name: "task 1", completed: true },
 		{ name: "task 2" },
 	])
+	const envVar = import.meta.env.VITE_TEST_VAR
 
 	function tambahTask() {
 		const tmpObj = [...tasksObj, { name: namaTask }]
@@ -33,16 +34,16 @@ function App() {
 			if (i !== index) {
 				return data
 			} else {
-				return {name:i+data.name}
+				return { name: i + data.name }
 			}
-			
 		})
 		setTaskObj(tmpObj)
 	}
 
 	return (
 		<>
-			<Card/>
+			<p>Data env={envVar}</p>
+			<Card />
 			<input
 				className={terserah.input}
 				value={namaTask}
