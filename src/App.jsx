@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useState,Fragment } from "react"
 import "./App.css"
 import terserah from "./Style.module.css"
 import Card from "./component/Card"
 
 function App() {
+	const [arrayState, setArrayState] = useState([])
 	const [namaTask, setNamaTask] = useState("")
 	const [tasksObj, setTaskObj] = useState([
 		{ name: "task 1", completed: true },
 		{ name: "task 2" },
 	])
+
 	const envVar = import.meta.env.VITE_TEST_VAR
 
 	function tambahTask() {
@@ -40,20 +42,40 @@ function App() {
 		setTaskObj(tmpObj)
 	}
 
+	function showArray(params = [1, 2, 3, 4]) {
+		const arr = []
+		for (let i = 0; i < params.length; i++) {
+			arr.push(params[i])
+		}
+		setArrayState(arr)
+	}
+
 	return (
 		<>
 			<p>Data env={envVar}</p>
 			<Card />
-			<input
+			{/* {[1, 2, 3].map((apaaja) => (
+				<>
+					<p>{apaaja}</p>
+					<p>{apaaja}</p>
+				</>
+			))}
+			<p>{1}</p>
+			<p>{2}</p>
+			<p>{1}</p>
+			<p>{2}</p>
+			<p>{1}</p>
+			<p>{2}</p> */}
+			{/* <input
 				className={terserah.input}
 				value={namaTask}
 				onChange={(e) => setNamaTask(e.target.value)}
 			/>
-			<button onClick={tambahTask}>Tambah task</button>
+			<button onClick={tambahTask}>Tambah task</button> */}
 			{/* {tasks.map((data) => (
 				<p>{data}</p>
 			))} */}
-			{tasksObj.map((data, index) => (
+			{/* {tasksObj.map((data, index) => (
 				// data.completed == true ? (
 				// 	<p key={index} >
 				// 		{data.name}
@@ -73,7 +95,7 @@ function App() {
 					</p>
 					<button onClick={() => editTask(index)}>edit</button>
 				</div>
-			))}
+			))} */}
 		</>
 	)
 }
