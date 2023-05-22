@@ -53,6 +53,7 @@ function App() {
 	return (
 		<>
 			<p>Data env={envVar}</p>
+			<p>Baru pokoknya</p>
 			<Card />
 			{/* {[1, 2, 3].map((apaaja) => (
 				<>
