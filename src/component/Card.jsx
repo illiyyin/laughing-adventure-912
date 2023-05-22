@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react"
+import { useState, useCallback, useMemo } from "react"
 import terserah from "./Style.module.css"
 
 export default function Card() {
