@@ -1,6 +1,8 @@
 import { useState, useCallback, useMemo } from "react"
 import terserah from "./Style.module.css"
 
+
+
 export default function Card() {
 	const [firstName, setFirstName] = useState("")
 	const [lastName, setLastName] = useState("")
